@@ -47,7 +47,7 @@ self.addEventListener('fetch', evt => {
 });
 
 // photo by leg0fenris: https://www.flickr.com/photos/legofenris/
-var troopers = 'blob:https://mdn.github.io/6d4a4e7e-0b37-c342-81b6-c031a4b9082c'
+var troopers = 'https://mdn.github.io/6d4a4e7e-0b37-c342-81b6-c031a4b9082c'
 
 var legoBox;
 Promise.all([
