@@ -19,7 +19,14 @@ self.addEventListener('install', evt => {
     }
     return Promise.resolve();
   }
-  evt.waitUntil(delaysAsInstalled());
+  //evt.waitUntil(delaysAsInstalled());
+  evt.waitUntil(
+    caches.open('static-v1').then(function(cache) {
+      return cache.addAll([
+        '/img/',
+        '/img/mozilla.png']);
+    })
+  );
 });
 
 self.addEventListener('activate', evt => {
@@ -44,21 +51,4 @@ self.addEventListener('fetch', evt => {
   }
 
   evt.respondWith(fetch(request));
-});
-
-// photo by leg0fenris: https://www.flickr.com/photos/legofenris/
-var troopers = 'https://mdn.github.io/6d4a4e7e-0b37-c342-81b6-c031a4b9082c'
-
-var legoBox;
-Promise.all([
-  fetch(troopers),
-  caches.open('legos')
-]).then(function(results) {
-  var response = results[0];
-  legoBox = results[1];
-  return legoBox.put(troopers, response);
-}).then(function() {
-  return legoBox.match(troopers);
-}).then(function(response) {
-  // invade rebel base
 });
