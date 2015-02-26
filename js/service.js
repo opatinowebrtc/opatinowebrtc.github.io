@@ -19,8 +19,8 @@ self.addEventListener('install', evt => {
     }
     return Promise.resolve();
   }
-  //evt.waitUntil(delaysAsInstalled());
-  evt.waitUntil(
+  evt.waitUntil(delaysAsInstalled());
+  //evt.waitUntil(
     // caches.open('static-v1').then(function(cache) {
     //   debug('caching image into cache');
     //   return cache.addAll([
@@ -28,7 +28,7 @@ self.addEventListener('install', evt => {
     //     '/js/app.js',
     //     '/img/mozilla.png']);
     // })
-  );
+  //);
 });
 
 self.addEventListener('activate', evt => {
