@@ -3,7 +3,7 @@ var DEBUG = true;
 
 if (!self.debug) {
   self.debug = function debug(message) {
-    dump('Execution context: ' + message);
+    dump('Execution context: ' + message + '\n');
   };
 }
 
