@@ -26,7 +26,6 @@ self.addEventListener('install', evt => {
       return cache.addAll([
         '/',
         '/js/app.js',
-        '/css/app.css',
         '/img/mozilla.png']);
     })
   );
