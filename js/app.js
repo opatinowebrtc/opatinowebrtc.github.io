@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function load() {
       });
     });
     
-    navigator.serviceWorker.register('service.js').then(
+    navigator.serviceWorker.register('/service.js').then(
       function(swr) {
         if (swr.installing) {
           dump('Client context: registration has an installing' +
