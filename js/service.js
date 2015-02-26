@@ -21,9 +21,9 @@ self.addEventListener('install', evt => {
   }
   //evt.waitUntil(delaysAsInstalled());
   evt.waitUntil(
-    caches.create('v1').then(function(cache) {
+    caches.open('v1').then(function(cache) {
       debug('caching image into cache');
-      return cache.add([
+      return cache.addAll([
         '/',
         '/js/app.js',
         '/img/mozilla.png']);
@@ -54,18 +54,18 @@ self.addEventListener('fetch', evt => {
 
   evt.respondWith(
     fetch(request)
-    // caches.open('v1').then(function(cache) {
-    //   return cache.match(request).then(function(response) {
-    //     if (response) {
-    //       debug('found response in cache: ' + response);
-    //       return response;
-    //     } else {
-    //       debug('no response found in cache. Fetching from network');
-    //       return fetch(request);
-    //     }
-    //   }, function(error) {
-    //     debug('error in cache.match ' + error);
-    //   });
-    // }, function(error) { debug('error in caches.open ' + error); });
+    caches.open('v1').then(function(cache) {
+      return cache.match(request).then(function(response) {
+        if (response) {
+          debug('found response in cache: ' + response);
+          return response;
+        } else {
+          debug('no response found in cache. Fetching from network');
+          return fetch(request);
+        }
+      }, function(error) {
+        debug('error in cache.match ' + error);
+      });
+    }, function(error) { debug('error in caches.open ' + error); });
   );
 });
