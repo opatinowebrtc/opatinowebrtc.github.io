@@ -21,13 +21,13 @@ self.addEventListener('install', function(evt) {
   }
   //evt.waitUntil(delaysAsInstalled());
   evt.waitUntil(
-    // caches.open('v1').then(function(cache) {
-    //   debug('caching image into cache');
-    //   return cache.addAll([
-    //     '/',
-    //     '/js/app.js',
-    //     '/img/mozilla.png']);
-    // })
+    caches.open('v1').then(function(cache) {
+      debug('caching image into cache');
+      return cache.addAll([
+        '/',
+        '/js/app.js',
+        '/img/mozilla.png']);
+    })
   );
 });
 
