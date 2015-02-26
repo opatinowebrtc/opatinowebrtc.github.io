@@ -8,7 +8,7 @@ if (!self.debug) {
   };
 }
 
-self.addEventListener('install', evt => {
+self.addEventListener('install', function(evt) {
   if (DEBUG) {
     debug('install event fired!');
   }
@@ -31,7 +31,7 @@ self.addEventListener('install', evt => {
   );
 });
 
-self.addEventListener('activate', evt => {
+self.addEventListener('activate', function(evt) {
   if (DEBUG) {
     debug('activate event fired!');
   }
@@ -44,7 +44,7 @@ self.addEventListener('activate', evt => {
   evt.waitUntil(delaysAsActivated());
 });
 
-self.addEventListener('fetch', evt => {
+self.addEventListener('fetch', function(evt) {
   var request = evt.request;
   var url = new URL(request.url);
   
