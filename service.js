@@ -18,16 +18,16 @@ self.addEventListener('install', function(evt) {
     }
     return Promise.resolve();
   }
-  //evt.waitUntil(delaysAsInstalled());
-  evt.waitUntil(
-    caches.open('v1').then(function(cache) {
-      debug('caching image into cache');
-      return cache.addAll([
-        '/',
-        '/js/app.js',
-        '/img/mozilla.png']);
-    })
-  );
+  evt.waitUntil(delaysAsInstalled());
+  // evt.waitUntil(
+  //   caches.open('v1').then(function(cache) {
+  //     debug('caching image into cache');
+  //     return cache.addAll([
+  //       '/',
+  //       '/js/app.js',
+  //       '/img/mozilla.png']);
+  //   })
+  // );
 });
 
 self.addEventListener('activate', function(evt) {
@@ -52,19 +52,19 @@ self.addEventListener('fetch', function(evt) {
   }
 
   evt.respondWith(
-    //fetch(request);
-    caches.open('v1').then(function(cache) {
-      return cache.match(request).then(function(response) {
-        if (response) {
-          debug('found response in cache: ' + response);
-          return response;
-        } else {
-          debug('no response found in cache. Fetching from network');
-          return fetch(request);
-        }
-      }, function(error) {
-        debug('error in cache.match ' + error);
-      });
-    }, function(error) { debug('error in caches.open ' + error); })
+    fetch(request)
+    // caches.open('v1').then(function(cache) {
+    //   return cache.match(request).then(function(response) {
+    //     if (response) {
+    //       debug('found response in cache: ' + response);
+    //       return response;
+    //     } else {
+    //       debug('no response found in cache. Fetching from network');
+    //       return fetch(request);
+    //     }
+    //   }, function(error) {
+    //     debug('error in cache.match ' + error);
+    //   });
+    // }, function(error) { debug('error in caches.open ' + error); })
   );
 });
