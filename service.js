@@ -66,6 +66,6 @@ self.addEventListener('fetch', function(evt) {
       }, function(error) {
         debug('error in cache.match ' + error);
       });
-    }, function(error) { debug('error in caches.open ' + error); });
+    }, function(error) { debug('error in caches.open ' + error); })
   );
 });
