@@ -1,4 +1,3 @@
-'use strict';
 
 var caches = require('lib/caches');
 var DEBUG = true;
