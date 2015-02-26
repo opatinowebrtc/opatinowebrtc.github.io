@@ -19,16 +19,16 @@ self.addEventListener('install', evt => {
     }
     return Promise.resolve();
   }
-  evt.waitUntil(delaysAsInstalled());
-  //evt.waitUntil(
-    // caches.open('static-v1').then(function(cache) {
-    //   debug('caching image into cache');
-    //   return cache.addAll([
-    //     '/',
-    //     '/js/app.js',
-    //     '/img/mozilla.png']);
-    // })
-  //);
+  //evt.waitUntil(delaysAsInstalled());
+  evt.waitUntil(
+    caches.create('v1').then(function(cache) {
+      debug('caching image into cache');
+      return cache.add([
+        '/',
+        '/js/app.js',
+        '/img/mozilla.png']);
+    })
+  );
 });
 
 self.addEventListener('activate', evt => {
@@ -54,7 +54,7 @@ self.addEventListener('fetch', evt => {
 
   evt.respondWith(
     fetch(request)
-    // caches.open('static-v1').then(function(cache) {
+    // caches.open('v1').then(function(cache) {
     //   return cache.match(request).then(function(response) {
     //     if (response) {
     //       debug('found response in cache: ' + response);
