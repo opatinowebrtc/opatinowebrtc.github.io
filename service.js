@@ -1,5 +1,4 @@
-
-var caches = require('lib/caches');
+'use strict'
 var DEBUG = true;
 
 if (!self.debug) {
