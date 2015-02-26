@@ -60,7 +60,7 @@ self.addEventListener('fetch', evt => {
     } else {
       debug('no response found in cache. Fetching from network');
       return fetch(request);
-    }
-  })
+    } 
+  }, error => {debug('error cache.match ' + error);})
   );
 });
