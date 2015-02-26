@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 window.addEventListener('DOMContentLoaded', function load() {
   window.removeEventListener('DOMContentLoaded', load);
 

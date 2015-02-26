@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var DEBUG = true;
 
 if (!self.debug) {
