@@ -22,6 +22,7 @@ self.addEventListener('install', evt => {
   //evt.waitUntil(delaysAsInstalled());
   evt.waitUntil(
     caches.open('static-v1').then(function(cache) {
+      debug('caching image into cache');
       return cache.addAll([
         '/img/',
         '/img/mozilla.png']);
