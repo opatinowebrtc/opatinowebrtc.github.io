@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function load() {
         }
       },
       function(error) {
-        console.log('Client context: ' + error + '\n');
+        console.log('Client context: ' , error);
       });
   }
 });
