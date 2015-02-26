@@ -24,7 +24,9 @@ self.addEventListener('install', evt => {
     caches.open('static-v1').then(function(cache) {
       debug('caching image into cache');
       return cache.addAll([
-        '/img/',
+        '/',
+        '/js/app.js',
+        '/css/app.css',
         '/img/mozilla.png']);
     })
   );
@@ -51,5 +53,5 @@ self.addEventListener('fetch', evt => {
     debug('fetching ' + url.pathname);
   }
 
-  evt.respondWith(fetch(request));
+  evt.respondWith(caches.match(request));
 });
