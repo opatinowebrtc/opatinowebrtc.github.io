@@ -7,10 +7,10 @@ window.addEventListener('DOMContentLoaded', function load() {
       if (!swr) {
         return;
       }
-      // swr.unregister().then(result => {
-      //   dump('Client context: unregister registration ' +
-      //        (result ? 'succeed' : 'failed') + '!\n');
-      // });
+      swr.unregister().then(result => {
+        dump('Client context: unregister registration ' +
+             (result ? 'succeed' : 'failed') + '!\n');
+      });
     });
     
     navigator.serviceWorker.register('js/service.js').then(

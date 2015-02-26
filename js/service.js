@@ -21,13 +21,13 @@ self.addEventListener('install', evt => {
   }
   //evt.waitUntil(delaysAsInstalled());
   evt.waitUntil(
-    caches.open('static-v1').then(function(cache) {
-      debug('caching image into cache');
-      return cache.addAll([
-        '/',
-        '/js/app.js',
-        '/img/mozilla.png']);
-    })
+    // caches.open('static-v1').then(function(cache) {
+    //   debug('caching image into cache');
+    //   return cache.addAll([
+    //     '/',
+    //     '/js/app.js',
+    //     '/img/mozilla.png']);
+    // })
   );
 });
 
@@ -62,7 +62,9 @@ self.addEventListener('fetch', evt => {
           debug('no response found in cache. Fetching from network');
           return fetch(request);
         }
-      }, function(error) { debug('error in cache.match ' + error); });
+      }, function(error) {
+        debug('error in cache.match ' + error);
+      });
     }, function(error) { debug('error in caches.open ' + error); });
   );
 });
