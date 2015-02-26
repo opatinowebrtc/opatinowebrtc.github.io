@@ -53,5 +53,14 @@ self.addEventListener('fetch', evt => {
     debug('fetching ' + url.pathname);
   }
 
-  evt.respondWith(caches.match(request));
+  evt.respondWith(cache.match(request).then(response => { 
+    if (response) {
+      debug('found response in cache: ' + response);
+      return response;
+    } else {
+      debug('no response found in cache. Fetching from network');
+      return fetch(request);
+    }
+  })
+  );
 });
