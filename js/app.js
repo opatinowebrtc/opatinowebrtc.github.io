@@ -1,5 +1,20 @@
 'use strict';
 
+var sendToSW = function(payload) {
+  return new Promise(function(resolve, reject) {
+    if (navigator.serviceWorker) {
+      var channel = new MessageChannel();
+      channel.port1.onmessage = function(e) {
+        resolve(e);
+      };
+      payload.port = channel.port2;
+      serviceWorker.postMessage(payload, [channel.port2]);
+    } else {
+      reject(Error('No Service Worker'));
+    }
+  });
+};
+
 window.addEventListener('DOMContentLoaded', function load() {
   window.removeEventListener('DOMContentLoaded', load);
 
@@ -32,6 +47,28 @@ window.addEventListener('DOMContentLoaded', function load() {
                (result ? 'succeed' : 'failed') + '!\n');
         });
       });
+    };
+
+    document.getElementById('delete-btn').onclick = function() {
+      sendToSW({
+        data: {
+          command: 'delete',
+          url: '/img/mozilla.png' }
+        });
+    };
+    document.getElementById('put-btn').onclick = function() {
+      sendToSW({
+        data: {
+          command: 'put',
+          url: '/img/mozilla2.png' }
+        });
+    };
+    document.getElementById('add-btn').onclick = function() {
+      sendToSW({
+        data: {
+          command: 'add',
+          url: '/img/mozilla2.png' }
+        });
     };
 
     if (navigator.serviceWorker.controller) {

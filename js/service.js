@@ -22,15 +22,15 @@ self.addEventListener('install', evt => {
   evt.waitUntil(
     caches.open('v1').then(function(cache) {
       debug('caching image into cache');
-      // return cache.addAll([
-      //   '/',
-      //   '/css/app.css',
-      //   '/js/app.js',
-      //   '/img/mozilla.png']);
-      cache.add('/').then(reponse => { debug('added /'); });
-      cache.add('/css/app.css').then(reponse => { debug('added /css/app.css'); });
-      cache.add('/js/app.js').then(reponse => { debug('added /js/app.js'); });
-      return cache.add('/img/mozilla.png');
+      return cache.addAll([
+        '/',
+        '/css/app.css',
+        '/js/app.js',
+        '/img/mozilla.png']);
+      // cache.add('/').then(reponse => { debug('added /'); });
+      // cache.add('/css/app.css').then(reponse => { debug('added /css/app.css'); });
+      // cache.add('/js/app.js').then(reponse => { debug('added /js/app.js'); });
+      // return cache.add('/img/mozilla.png');
     })
   );
 });
@@ -72,6 +72,41 @@ self.addEventListener('fetch', evt => {
       });
     }, function(error) { debug('error in caches.open ' + error); })
   );
+});
+
+self.addEventListener('action', evt => {
+  caches.open('v1').then( cache => {
+    var url = evt.data.url;
+    switch (evt.data.command) {
+      case 'delete':
+        cache.delete(url).then(response => {
+          debug('deleted ' + url + '\n');
+        });
+        break;
+      case 'put':
+        cache.put(url).then(response => {
+          debug('put ' + url + '\n');
+        });
+        break;
+      case 'add':
+        cache.add(url).then( response => {
+          debug('added ' + url + '\n');
+        });
+        break;
+    }
+  });
+  var url = evt.data.url;
+  var command = evt.data.command;
+
+  switch (command) {
+    case 'delete':
+      caches
+      break;
+    case 'put':
+      break;
+    case 'add':
+      break;
+  }
 });
 
 // 'use strict';
