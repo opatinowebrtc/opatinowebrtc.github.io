@@ -56,7 +56,8 @@ self.addEventListener('fetch', evt => {
     caches.open('v1').then(function(cache) {
       return cache.match(request).then(function(response) {
         if (response) {
-          debug('found response in cache: ' + response);
+          url = new URL(response.url);
+          debug('found response in cache: ' + url.pathname);
           return response;
         } else {
           debug('no response found in cache. Fetching from network');
