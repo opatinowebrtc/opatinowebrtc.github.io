@@ -22,11 +22,15 @@ self.addEventListener('install', evt => {
   evt.waitUntil(
     caches.open('v1').then(function(cache) {
       debug('caching image into cache');
-      return cache.addAll([
-        '/',
-        '/css/app.css',
-        '/js/app.js',
-        '/img/mozilla.png']);
+      // return cache.addAll([
+      //   '/',
+      //   '/css/app.css',
+      //   '/js/app.js',
+      //   '/img/mozilla.png']);
+      cache.add('/').then(reponse => { debug('added /'); });
+      cache.add('/css/app.css').then(reponse => { debug('added /css/app.css'); });
+      cache.add('/js/app.js').then(reponse => { debug('added /js/app.js'); });
+      return cache.add('/img/mozilla.png');
     })
   );
 });
