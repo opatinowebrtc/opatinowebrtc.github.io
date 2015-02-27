@@ -71,14 +71,14 @@ self.addEventListener('fetch', evt => {
         } else {
           var reqURL = new URL(request.url);
           debug('no response found in cache. Fetching from network ' + reqURL);
-          if(reqURL === 'https://opatinowebrtc.github.io/img/mozilla2.png') {
+
             fetch(request).then(response => {
               var response2 = response;
               cache.put(request, response2).then( response3 => {
                 debug('cache put works, put mozilla2.png in cache');
               });
-            })
-          }
+            });
+
           return fetch(request);
         }
       }, function(error) {
