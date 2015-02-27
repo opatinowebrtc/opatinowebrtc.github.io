@@ -15,7 +15,7 @@
 //   });
 // };
 
-var sendToSW = null;
+var sendToSW = function() {};
 
 window.addEventListener('DOMContentLoaded', function load() {
   window.removeEventListener('DOMContentLoaded', load);
