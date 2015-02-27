@@ -62,15 +62,22 @@ self.addEventListener('fetch', evt => {
         if (response) {
           url = new URL(response.url);
           debug('found response in cache: ' + url.pathname);
-          cache.put('/img/mozilla2.png').then(response => {
-            debug('put works, added mozilla2.png');
-          });
-          cache.delete('/img/mozilla2.png').then(response => {
+          if(url.pathname === '/img/mozilla2.png') {
+            cache.delete('/img/mozilla2.png').then(response => {
             debug('delete works, deleted mozilla2.png');
           });
+          }
           return response;
         } else {
           debug('no response found in cache. Fetching from network');
+          var reqURL = new URL(request.url);
+          if(reqURL === '/img/mozilla2.png') {
+            fetch(request).then(response => {
+              cache.put(request, response2).then( response3 => {
+                debug('cache put works, put mozilla2.png in cache');
+              });
+            })
+          }
           return fetch(request);
         }
       }, function(error) {
