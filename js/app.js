@@ -1,19 +1,21 @@
 'use strict';
 
-var sendToSW = function(payload) {
-  return new Promise(function(resolve, reject) {
-    if (navigator.serviceWorker) {
-      var channel = new MessageChannel();
-      channel.port1.onmessage = function(e) {
-        resolve(e);
-      };
-      payload.port = channel.port2;
-      serviceWorker.postMessage(payload, [channel.port2]);
-    } else {
-      reject(Error('No Service Worker'));
-    }
-  });
-};
+// var sendToSW = function(payload) {
+//   return new Promise(function(resolve, reject) {
+//     if (navigator.serviceWorker) {
+//       var channel = new MessageChannel();
+//       channel.port1.onmessage = function(e) {
+//         resolve(e);
+//       };
+//       payload.port = channel.port2;
+//       serviceWorker.postMessage(payload, [channel.port2]);
+//     } else {
+//       reject(Error('No Service Worker'));
+//     }
+//   });
+// };
+
+var sendToSW = null;
 
 window.addEventListener('DOMContentLoaded', function load() {
   window.removeEventListener('DOMContentLoaded', load);
