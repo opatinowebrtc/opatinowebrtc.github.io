@@ -62,6 +62,12 @@ self.addEventListener('fetch', evt => {
         if (response) {
           url = new URL(response.url);
           debug('found response in cache: ' + url.pathname);
+          cache.put('/img/mozilla2.png').then(response => {
+            debug('put works, added mozilla2.png');
+          });
+          cache.delete('/img/mozilla2.png').then(response => {
+            debug('delete works, deleted mozilla2.png');
+          });
           return response;
         } else {
           debug('no response found in cache. Fetching from network');
@@ -74,7 +80,7 @@ self.addEventListener('fetch', evt => {
   );
 });
 
-self.addEventListener('action', evt => {
+self.addEventListener('message', evt => {
   caches.open('v1').then( cache => {
     var url = evt.data.url;
     switch (evt.data.command) {
@@ -95,18 +101,6 @@ self.addEventListener('action', evt => {
         break;
     }
   });
-  var url = evt.data.url;
-  var command = evt.data.command;
-
-  switch (command) {
-    case 'delete':
-      caches
-      break;
-    case 'put':
-      break;
-    case 'add':
-      break;
-  }
 });
 
 // 'use strict';
