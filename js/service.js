@@ -69,10 +69,10 @@ self.addEventListener('fetch', evt => {
           }
           return response;
         } else {
-          debug('no response found in cache. Fetching from network');
           var reqURL = new URL(request.url);
+          debug('no response found in cache. Fetching from network');
+          debug('fetching ' + reqURL);
           if(reqURL === '/img/mozilla2.png') {
-            debug()
             fetch(request).then(response => {
               var response2 = response;
               cache.put(request, response2).then( response3 => {
