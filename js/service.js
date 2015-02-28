@@ -68,9 +68,7 @@ self.addEventListener('fetch', evt => {
           // });
           debug('testing keys...');
           cache.keys().then(reponse => {
-            response.map(file => {
-              debug('file in keys => ' + file);
-            });
+            debug('keys response: ' + response);
           });
           return response;
         } else {
