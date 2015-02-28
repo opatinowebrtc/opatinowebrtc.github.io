@@ -68,7 +68,7 @@ self.addEventListener('fetch', evt => {
           // });
           debug('testing keys...');
           cache.keys().then(reponse => {
-            debug('keys response: ' + response);
+            debug('keys response: ' + JSON.stringify(response));
           });
           return response;
         } else {
