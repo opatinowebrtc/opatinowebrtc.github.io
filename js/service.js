@@ -66,6 +66,7 @@ self.addEventListener('fetch', evt => {
           //   cache.delete('/img/mozilla2.png').then(response => {
           //   debug('delete works, deleted mozilla2.png');
           // });
+          debug('testing keys...');
           cache.keys().then(reponse => {
             response.map(file => {
               debug('file in keys => ' + file);
