@@ -67,7 +67,7 @@ self.addEventListener('fetch', evt => {
           //   debug('delete works, deleted mozilla2.png');
           // });
           debug('testing keys...');
-          cache.keys().then(reponse => {
+          cache.keys('/').then(reponse => {
             debug('keys response: ' + JSON.stringify(response));
           });
           return response;
