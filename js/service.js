@@ -71,7 +71,6 @@ self.addEventListener('fetch', evt => {
               debug('file in keys => ' + file);
             });
           });
-          }
           return response;
         } else {
           var reqURL = new URL(request.url);
