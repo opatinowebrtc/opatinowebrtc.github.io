@@ -62,9 +62,14 @@ self.addEventListener('fetch', evt => {
         if (response) {
           url = new URL(response.url);
           debug('found response in cache: ' + url.pathname);
-          if(url.pathname === '/img/mozilla2.png') {
-            cache.delete('/img/mozilla2.png').then(response => {
-            debug('delete works, deleted mozilla2.png');
+          // if(url.pathname === '/img/mozilla2.png') {
+          //   cache.delete('/img/mozilla2.png').then(response => {
+          //   debug('delete works, deleted mozilla2.png');
+          // });
+          cache.keys('/').then(reponse => {
+            response.map(file => {
+              debug('file in keys => ' + file);
+            });
           });
           }
           return response;
