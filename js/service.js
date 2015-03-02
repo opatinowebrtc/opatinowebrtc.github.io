@@ -115,7 +115,7 @@ self.addEventListener('fetch', evt => {
       });
     })
   );
-);
+});
 
 self.addEventListener('message', evt => {
   caches.open('v1').then( cache => {
