@@ -115,8 +115,11 @@ self.addEventListener('fetch', evt => {
           caches.keys().then(arrayCaches => {
             arrayCaches.map(cache => {
               debug('cache en caches: ' + cache);
+              caches.match(request).then(response => {
+                debug('response found in a cache ' + response);
+                return response;
+              });
             });
-            return arrayCaches;
           });
         });
       });
