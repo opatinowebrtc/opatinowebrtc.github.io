@@ -112,7 +112,12 @@ self.addEventListener('fetch', evt => {
         debug('cache created or recovered ' + cache);
         caches.open('v3').then(result => {
           debug('cache created or recovered ' + cache);
-          return result;
+          caches.keys().then(arrayCaches => {
+            arrayCaches.map(cache => {
+              debug('cache en caches: ' + cache);
+            });
+            return arrayCaches;
+          });
         });
       });
     })
