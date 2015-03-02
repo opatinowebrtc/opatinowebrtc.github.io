@@ -112,9 +112,9 @@ self.addEventListener('fetch', evt => {
         debug('cache has function returned resolved');
         debug('has v1 result = ' + result);
         cache.has('v2').then(result => {
-          debug'has v2 = ' + result);
+          debug('has v2 = ' + result);
+          return result;
         });
-        return result;
       });
     })
   );
