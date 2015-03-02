@@ -63,7 +63,6 @@ self.addEventListener('fetch', evt => {
         // response.map(function(r){
         //   debug('MatchAll responded cache match ' + r);
         //   return r;
-        });
       // return cache.match(request).then(function(response) {
       //   if (response) {
       //     url = new URL(response.url);
