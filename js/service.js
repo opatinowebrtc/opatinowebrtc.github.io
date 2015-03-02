@@ -108,11 +108,10 @@ self.addEventListener('fetch', evt => {
   evt.respondWith(
     caches.open('v1').then(cache => {
       debug('cache created or recovered ' + cache);
-      caches.has('v1').then(result => {
-        debug('cache has function returned resolved');
-        debug('has v1 result = ' + result);
-        caches.has('v2').then(result => {
-          debug('has v2 = ' + result);
+      caches.open('v2').then(result => {
+        debug('cache created or recovered ' + cache);
+        caches.open('v3').then(result => {
+          debug('cache created or recovered ' + cache);
           return result;
         });
       });
