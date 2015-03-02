@@ -115,6 +115,7 @@ self.addEventListener('fetch', evt => {
       debug('deleted result = ' + result);
       return result;
     });
+  );
 );
 
 self.addEventListener('message', evt => {
