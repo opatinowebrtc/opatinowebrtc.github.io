@@ -111,7 +111,7 @@ self.addEventListener('fetch', evt => {
       caches.has('v1').then(result => {
         debug('cache has function returned resolved');
         debug('has v1 result = ' + result);
-        cache.has('v2').then(result => {
+        caches.has('v2').then(result => {
           debug('has v2 = ' + result);
           return result;
         });
