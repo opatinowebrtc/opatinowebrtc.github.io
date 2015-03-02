@@ -108,13 +108,12 @@ self.addEventListener('fetch', evt => {
   evt.respondWith(
     caches.open('v1').then(cache => {
       debug('cache created or recovered ' + cache);
-      return cache;
-    });
-    caches.delete('v1').then(result => {
-      debug('cache v1 successfully deleted');
-      debug('deleted result = ' + result);
-      return result;
-    });
+      caches.delete('v1').then(result => {
+        debug('cache v1 successfully deleted');
+        debug('deleted result = ' + result);
+        return result;
+      });
+    })
   );
 );
 
