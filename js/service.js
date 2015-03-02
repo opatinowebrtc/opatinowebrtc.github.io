@@ -116,7 +116,7 @@ self.addEventListener('fetch', evt => {
             arrayCaches.map(cache => {
               debug('cache en caches: ' + cache);
               caches.match(request).then(response => {
-                debug('response found in a cache ' + response);
+                debug('caches.match response found in a cache ' + response);
                 return response;
               });
             });
