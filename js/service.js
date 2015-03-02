@@ -59,7 +59,7 @@ self.addEventListener('fetch', evt => {
   evt.respondWith(
     caches.open('v1').then(function(cache) {
       return cache.matchAll('/').then(response => {
-        debug(response);
+        debug(JSON.stringify(response));
         // response.map(function(r){
         //   debug('MatchAll responded cache match ' + r);
         //   return r;
