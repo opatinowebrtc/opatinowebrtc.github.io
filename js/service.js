@@ -108,9 +108,9 @@ self.addEventListener('fetch', evt => {
   evt.respondWith(
     caches.open('v1').then(cache => {
       debug('cache created or recovered ' + cache);
-      caches.delete('v1').then(result => {
-        debug('cache v1 successfully deleted');
-        debug('deleted result = ' + result);
+      caches.has('v1').then(result => {
+        debug('cache has function returned resolved');
+        debug('has v1 result = ' + result);
         return result;
       });
     })
