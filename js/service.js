@@ -106,26 +106,26 @@ self.addEventListener('fetch', evt => {
   }
 
   evt.respondWith(
-<<<<<<< HEAD
-    caches.open('v1').then(cache => {
-      debug('cache created or recovered ' + cache);
-      caches.open('v2').then(result => {
-        debug('cache created or recovered ' + cache);
-        caches.open('v3').then(result => {
-          debug('cache created or recovered ' + cache);
-          caches.keys().then(arrayCaches => {
-            arrayCaches.map(cache => {
-              debug('cache en caches: ' + cache);
-              caches.match(request).then(response => {
-                debug('caches.match response found in a cache ' + response);
-                return response;
-              });
-            });
-          });
-        });
-=======
+
+    // caches.open('v1').then(cache => {
+    //   debug('cache created or recovered ' + cache);
+    //   caches.open('v2').then(result => {
+    //     debug('cache created or recovered ' + cache);
+    //     caches.open('v3').then(result => {
+    //       debug('cache created or recovered ' + cache);
+    //       caches.keys().then(arrayCaches => {
+    //         arrayCaches.map(cache => {
+    //           debug('cache en caches: ' + cache);
+    //           caches.match(request).then(response => {
+    //             debug('caches.match response found in a cache ' + response);
+    //             return response;
+    //           });
+    //         });
+    //       });
+    //     });
+
     caches.open('v1').then(function(cache) {
-      return cache.matchAll('/').then(response => {
+      return cache.matchAll().then(response => {
         debug(JSON.stringify(response));
         // response.map(function(r){
         //   debug('MatchAll responded cache match ' + r);
