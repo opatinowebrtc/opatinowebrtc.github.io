@@ -158,7 +158,6 @@ self.addEventListener('fetch', evt => {
       //   }
       }, function(error) {
         debug('error in cache.match ' + error);
->>>>>>> parent of 4f15444... testing matchall
       });
     })
   );
