@@ -126,7 +126,7 @@ self.addEventListener('fetch', evt => {
 
     caches.open('v1').then(function(cache) {
       return cache.keys('https://opatinowebrtc.github.io/').then(response => {
-        debug(response.url);
+        debug(response[0].url);
         // response.map(function(r){
         //   debug('MatchAll responded cache match ' + r);
         //   return r;
