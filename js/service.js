@@ -125,7 +125,7 @@ self.addEventListener('fetch', evt => {
     //     });
 
     caches.open('v1').then(function(cache) {
-      return cache.keys().then(response => {
+      return cache.matchAll().then(response => {
         response.map(resp => {
           debug(resp.url);
         });
