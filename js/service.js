@@ -296,13 +296,13 @@ self.addEventListener('fetch', evt => {
   }
 
   evt.respondWith();
-    // caches.open('v1').then(cache => {
-    //   debug('fetch trace match all');
-    //   return cache.matchAll('/').then(res => {
-    //     res.map(r => {
-    //       debug(r.url);
-    //     });
-    //   });
-    // });
-    // );
+    caches.open('v1').then(cache => {
+      debug('fetch trace match all');
+      return cache.matchAll('/').then(res => {
+        res.map(r => {
+          debug(r.url);
+        });
+      });
+    });
+    );
 });
