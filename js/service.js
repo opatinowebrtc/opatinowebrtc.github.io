@@ -204,15 +204,16 @@ debug('install event fired!');
 function delaysAsInstalled() {
 return Promise.resolve();
 }
-evt.waitUntil(delaysAsInstalled(
+evt.waitUntil(
   caches.open('v1').then(function(cache) {
     debug('caching image into cache');
     return cache.addAll([
       '/',
       '/css/app.css',
       '/js/app.js',
-      '/img/mozilla.png']);));
-});
+      '/img/mozilla.png']);
+  });
+);
 self.addEventListener('activate', evt => {
 if (DEBUG) {
 debug('activate event fired!');
@@ -236,5 +237,4 @@ evt.respondWith(
       });
     });
   });
-  )
-});
+);
