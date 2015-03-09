@@ -295,7 +295,7 @@ self.addEventListener('fetch', evt => {
     debug('fetching ' + url.pathname);
   }
 
-  evt.respondWith();
+  evt.respondWith(
     caches.open('v1').then(cache => {
       debug('fetch trace match all');
       return cache.matchAll('/').then(res => {
