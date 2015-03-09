@@ -198,22 +198,24 @@ dump("Execution context: " + message + "\n");
 };
 }
 self.addEventListener('install', evt => {
-if (DEBUG) {
-debug('install event fired!');
-}
-function delaysAsInstalled() {
-return Promise.resolve();
-}
-evt.waitUntil(
-  caches.open('v1').then(function(cache) {
-    debug('caching image into cache');
-    return cache.addAll([
-      '/',
-      '/css/app.css',
-      '/js/app.js',
-      '/img/mozilla.png']);
-  });
-);
+  if (DEBUG) {
+  debug('install event fired!');
+  }
+  function delaysAsInstalled() {
+  return Promise.resolve();
+  }
+  evt.waitUntil(
+    caches.open('v1').then(function(cache) {
+      debug('caching image into cache');
+      return cache.addAll([
+        '/',
+        '/css/app.css',
+        '/js/app.js',
+        '/img/mozilla.png']);
+    });
+  );
+});
+
 self.addEventListener('activate', evt => {
 if (DEBUG) {
 debug('activate event fired!');
@@ -224,17 +226,18 @@ return Promise.resolve();
 evt.waitUntil(delaysAsActivated());
 });
 self.addEventListener('fetch', evt => {
-var request = evt.request;
-var url = new URL(request.url);
-if (DEBUG) {
-debug('fetching ' + url.pathname);
-}
-evt.respondWith(
-  caches.open('v1').then(function(cache) {
-    return cache.matchAll().then(response => {
-      response.map(resp => {
-        debug(resp.url);
+  var request = evt.request;
+  var url = new URL(request.url);
+  if (DEBUG) {
+  debug('fetching ' + url.pathname);
+  }
+  evt.respondWith(
+    caches.open('v1').then(function(cache) {
+      return cache.matchAll().then(response => {
+        response.map(resp => {
+          debug(resp.url);
+        });
       });
     });
-  });
-);
+  );
+});
