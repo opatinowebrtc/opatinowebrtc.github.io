@@ -1,3 +1,4 @@
+
 // 'use strict';
 
 // var DEBUG = true;
@@ -193,16 +194,18 @@
 'use strict';
 var DEBUG = true;
 if (!self.debug) {
-self.debug = function debug(message) {
-dump("Execution context: " + message + "\n");
-};
+  self.debug = function debug(message) {
+    dump("Execution context: " + message + "\n");
+  };
 }
+
 self.addEventListener('install', evt => {
   if (DEBUG) {
-  debug('install event fired!');
+    debug('install event fired!');
   }
+
   function delaysAsInstalled() {
-  return Promise.resolve();
+    return Promise.resolve();
   }
   evt.waitUntil(
     caches.open('v1').then(function(cache) {
@@ -217,19 +220,20 @@ self.addEventListener('install', evt => {
 });
 
 self.addEventListener('activate', evt => {
-if (DEBUG) {
-debug('activate event fired!');
-}
-function delaysAsActivated() {
-return Promise.resolve();
-}
-evt.waitUntil(delaysAsActivated());
+  if (DEBUG) {
+    debug('activate event fired!');
+  }
+  function delaysAsActivated() {
+    return Promise.resolve();
+  }
+  evt.waitUntil(delaysAsActivated());
 });
+
 self.addEventListener('fetch', evt => {
   var request = evt.request;
   var url = new URL(request.url);
   if (DEBUG) {
-  debug('fetching ' + url.pathname);
+    debug('fetching ' + url.pathname);
   }
   evt.respondWith(
     caches.open('v1').then(function(cache) {
