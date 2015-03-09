@@ -264,7 +264,16 @@ self.addEventListener('install', evt => {
   function delaysAsInstalled() {
     return Promise.resolve();
   }
-  evt.waitUntil(delaysAsInstalled());
+
+  evt.waitUntil(
+      caches.open('v1').then(cache => {
+        return cache.addAll([
+         '/',
+         '/css/app.css',
+         '/js/app.js',
+         '/img/mozilla.png']);
+      });
+    );
 });
 
 self.addEventListener('activate', evt => {
@@ -285,5 +294,13 @@ self.addEventListener('fetch', evt => {
     debug('fetching ' + url.pathname);
   }
 
-  evt.respondWith(fetch(request));
+  evt.respondWith(
+    caches.open('v1').then(cache => {
+      return cache.matchAll().then(res => {
+        res.map(r => {
+          debug(r.url);
+        });
+      });
+    });
+    );
 });
