@@ -230,8 +230,11 @@ debug('fetching ' + url.pathname);
 }
 evt.respondWith(
   caches.open('v1').then(function(cache) {
-  return cache.matchAll().then(response => {
-    response.map(resp => {
-      debug(resp.url);
+    return cache.matchAll().then(response => {
+      response.map(resp => {
+        debug(resp.url);
+      });
     });
+  });
+  )
 });
