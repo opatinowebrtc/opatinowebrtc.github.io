@@ -268,11 +268,11 @@ self.addEventListener('install', evt => {
   evt.waitUntil(
       caches.open('v1').then(cache => {
         debug('install adding all');
-        return cache.addAll([
-         '/',
-         '/css/app.css',
-         '/js/app.js',
-         '/img/mozilla.png']);
+        // return cache.addAll([
+        //  '/',
+        //  '/css/app.css',
+        //  '/js/app.js',
+        //  '/img/mozilla.png']);
       });
     );
 });
