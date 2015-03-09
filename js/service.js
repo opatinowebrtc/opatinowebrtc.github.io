@@ -251,58 +251,58 @@
 var DEBUG = true;
 
 if (!self.debug) {
-  self.debug = function debug(message) {
-    dump("Execution context: " + message + "\n");
-  };
+    self.debug = function debug(message) {
+        dump("Execution context: " + message + "\n");
+    };
 }
 
-self.addEventListener('install', evt => {
-  if (DEBUG) {
+self.addEventListener('install', function(evt) {
+    if (DEBUG) {
     debug('install event fired!');
-  }
+}
 
-  function delaysAsInstalled() {
+function delaysAsInstalled() {
     return Promise.resolve();
-  }
+}
 
-  evt.waitUntil(
-      caches.open('v1').then(cache => {
+evt.waitUntil(
+    caches.open('v1').then(function(cache) {
         debug('install adding all');
-        // return cache.addAll([
-        //  '/',
-        //  '/css/app.css',
-        //  '/js/app.js',
-        //  '/img/mozilla.png']);
-      });
-    );
+    return cache.addAll([
+  '/',
+  '/css/app.css',
+  '/js/app.js',
+  '/img/mozilla.png']);
+    })
+);
 });
 
-self.addEventListener('activate', evt => {
-  if (DEBUG) {
+self.addEventListener('activate', function(evt) {
+    if (DEBUG) {
     debug('activate event fired!');
-  }
-  function delaysAsActivated() {
+}
+function delaysAsActivated() {
     return Promise.resolve();
-  }
-  evt.waitUntil(delaysAsActivated());
+}
+evt.waitUntil(delaysAsActivated());
 });
 
-self.addEventListener('fetch', evt => {
-  var request = evt.request;
-  var url = new URL(request.url);
-  
-  if (DEBUG) {
-    debug('fetching ' + url.pathname);
-  }
+self.addEventListener('fetch', function(evt) {
+    var request = evt.request;
+var url = new URL(request.url);
 
-  evt.respondWith(
-    // caches.open('v1').then(cache => {
-    //   debug('fetch trace match all');
-    //   return cache.matchAll('/').then(res => {
-    //     res.map(r => {
-    //       debug(r.url);
-    //     });
-    //   });
-    // });
-    );
+if (DEBUG) {
+    debug('fetching ' + url.pathname);
+}
+
+evt.respondWith(
+    caches.open('v1').then(function(cache) {
+       debug('fetch trace match all');
+       return cache.matchAll('/').then(function(res) {
+         res.map(function(r) {
+           debug(r.url);
+         });
+       });
+    })
+);
 });
