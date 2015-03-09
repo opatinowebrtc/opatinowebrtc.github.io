@@ -265,15 +265,16 @@ self.addEventListener('install', evt => {
     return Promise.resolve();
   }
 
-  evt.waitUntil(delaysAsInstalled());
-      // caches.open('v1').then(cache => {
-      //   debug('install adding all');
-      //   return cache.addAll([
-      //    '/',
-      //    '/css/app.css',
-      //    '/js/app.js',
-      //    '/img/mozilla.png']);
-      // });
+  evt.waitUntil(
+      caches.open('v1').then(cache => {
+        debug('install adding all');
+        return cache.addAll([
+         '/',
+         '/css/app.css',
+         '/js/app.js',
+         '/img/mozilla.png']);
+      });
+    );
 });
 
 self.addEventListener('activate', evt => {
