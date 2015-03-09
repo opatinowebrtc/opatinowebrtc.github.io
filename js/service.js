@@ -274,7 +274,6 @@ self.addEventListener('install', evt => {
       //    '/js/app.js',
       //    '/img/mozilla.png']);
       // });
-    );
 });
 
 self.addEventListener('activate', evt => {
@@ -295,14 +294,14 @@ self.addEventListener('fetch', evt => {
     debug('fetching ' + url.pathname);
   }
 
-  evt.respondWith(
-    caches.open('v1').then(cache => {
-      debug('fetch trace match all');
-      return cache.matchAll('/').then(res => {
-        res.map(r => {
-          debug(r.url);
-        });
-      });
-    });
-    );
+  evt.respondWith();
+    // caches.open('v1').then(cache => {
+    //   debug('fetch trace match all');
+    //   return cache.matchAll('/').then(res => {
+    //     res.map(r => {
+    //       debug(r.url);
+    //     });
+    //   });
+    // });
+    // );
 });
