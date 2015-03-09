@@ -267,6 +267,7 @@ self.addEventListener('install', evt => {
 
   evt.waitUntil(
       caches.open('v1').then(cache => {
+        debug('install adding all');
         return cache.addAll([
          '/',
          '/css/app.css',
@@ -296,7 +297,8 @@ self.addEventListener('fetch', evt => {
 
   evt.respondWith(
     caches.open('v1').then(cache => {
-      return cache.matchAll().then(res => {
+      debug('fetch trace match all');
+      return cache.matchAll('/').then(res => {
         res.map(r => {
           debug(r.url);
         });
