@@ -304,6 +304,5 @@ evt.respondWith(
          });
            return Promise.resolve();
        });
-    }
-);
+    }));
 });
