@@ -298,11 +298,10 @@ if (DEBUG) {
 evt.respondWith(
     caches.open('v1').then(function(cache) {
        debug('fetch trace match all');
-       return cache.matchAll().then(function(res) {
+       cache.matchAll().then(function(res) {
          res.map(function(r) {
            debug(r.url);
          });
-           return Promise.resolve();
        });
     }));
 });
