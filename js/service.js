@@ -266,14 +266,15 @@ function delaysAsInstalled() {
 }
 
 evt.waitUntil(
-    caches.open('v1').then(function(cache) {
-        debug('install adding all');
-    return cache.addAll([
-  '/',
-  '/css/app.css',
-  '/js/app.js',
-  '/img/mozilla.png']);
-    })
+  //  caches.open('v1').then(function(cache) {
+  //      debug('install adding all');
+  //  return cache.addAll([
+  //'/',
+  //'/css/app.css',
+  //'/js/app.js',
+  //'/img/mozilla.png']);
+  //  })
+  delaysAsInstalled()
 );
 });
 
