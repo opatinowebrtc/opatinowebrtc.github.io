@@ -305,5 +305,6 @@ evt.respondWith(
     //     });
     //   });
     //}
+    fetch(request)
 );
 });
