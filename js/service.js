@@ -296,14 +296,18 @@ if (DEBUG) {
 }
 
 evt.respondWith(
-    //caches.open('v1').then(function(cache) {
-    //   debug('fetch trace match all');
-        fetch(request)
+    caches.open('v1').then(function(cache) {
+       debug('fetch trace match all');
+       fetch(request).then(function(response) {
+       return response;
+    }).catch(function(error) {
+       throw error;});
+        }
        //return cache.matchAll().then(function(res) {
        //  res.map(function(r) {
        //    debug(r.url);
        //  });
        //});
     //}));
-);
+    ).catch(function(error){throw error;}));
 });
