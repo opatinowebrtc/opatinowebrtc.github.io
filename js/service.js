@@ -302,7 +302,7 @@ evt.respondWith(
          res.map(function(r) {
            debug(r.url);
          });
-           debug(res[0].url);
+           debug('jaoo return ' + res[0].url);
        });
     }));
 });
